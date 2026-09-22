@@ -1,0 +1,96 @@
+# Copyright (C) 2023 - present Juergen Zimmermann, Hochschule Karlsruhe
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Aufruf:   docker compose up
+#           Falls paketobuildpacks/builder-jammy-base:latest statt tiny verwendet wurde:
+#             docker compose exec gastronomie bash
+#               id
+#               ps -ef
+#               env
+#               ls -l /layers
+#               ls -l
+#               pwd
+#               hostname
+#               cat /etc/os-release
+#           docker compose down
+
+# https://docs.docker.com/compose/compose-file
+# https://github.com/compose-spec/compose-spec/blob/master/schema/compose-spec.json
+
+# https://docs.docker.com/reference/compose-file/services
+services:
+  # https://stackoverflow.com/questions/76345884/how-to-select-specific-services-of-docker-compose-when-using-spring-boot-docker
+  gastronomie:
+    image: gastronomie:latest
+    #image: juergenzimmermann/gastronomie:2026.4.1-buildpacks-eclipse
+    #image: juergenzimmermann/gastronomie:2026.4.1-buildpacks-azul
+
+    #image: juergenzimmermann/gastronomie:2026.4.1-hardened
+    #image: juergenzimmermann/gastronomie:2026.4.1-eclipse-noble
+    #image: juergenzimmermann/gastronomie:2026.4.1-eclipse-alpine
+    #image: juergenzimmermann/gastronomie:2026.4.1-azul
+    #image: juergenzimmermann/gastronomie:2026.4.1-sap
+
+    #entrypoint: ["/bin/bash", "-c", "echo 'Container als bash gestartet.' && sleep infinity"]
+    # (d)ash = (Debian) Almquist Shell
+    #entrypoint: ["/bin/ash", "-c", "echo 'Container als ash gestartet.' && sleep infinity"]
+    ports:
+      - published: 8443
+        target: 8443
+        protocol: tcp
+    # https://docs.docker.com/engine/storage/volumes
+    volumes:
+      - type: bind
+        source: /Users/abdullah/IdeaProjects/gastronomie/src/main/resources/private-key.pem
+        target: /workspace/BOOT-INF/classes/private-key.pem
+        # Dockerfile statt Buildpacks fuer Image:
+        #target: /workspace/private-key.pem
+        read_only: true
+      - type: bind
+        source: /Users/abdullah/IdeaProjects/gastronomie/src/main/resources/certificate.crt
+        target: /workspace/BOOT-INF/classes/certificate.crt
+        # Dockerfile statt Buildpacks fuer Image:
+        #target: /workspace/certificate.crt
+        read_only: true
+      # macOS: "Named Volume" statt "Bind Mounts" waeren eigentlich besser
+      # ABER dann muesste z.B. PostgreSQL fuer Kubernetes ein zweites Mal aufgesetzt werden :-(
+      # DESHALB muss das Docker Image so gebaut werden, dass der Container mit dem Linux-User "root" laeuft :-(
+      - type: bind
+
+        # macOS: Verzeichnis mit Zugriffsrechten 777 anlegen, d.h. chmod 777 /usr/local/volumes/tmp
+        source: /Users/abdullah/tmp
+        target: /tmp
+    # https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables
+    env_file: .env
+    networks: [acme-network]
+    hostname: gastronomie
+    # https://docs.docker.com/reference/compose-file/services/#cap_drop
+    cap_drop: [ ALL ]
+    deploy:
+      # https://docs.docker.com/compose/compose-file/deploy/#resources
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+        reservations:
+          cpus: "1.0"
+          memory: 768M
+      # https://docs.docker.com/compose/compose-file/deploy/#replicas
+      #replicas: 2
+      #endpoint_mode: vip
+
+networks:
+  acme-network:
+    name: acme-network

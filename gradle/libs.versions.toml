@@ -1,0 +1,210 @@
+# Copyright (C) 2021 - present Juergen Zimmermann, Hochschule Karlsruhe
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# https://docs.gradle.org/8.4/userguide/platforms.html#sub:central-declaration-of-dependencies
+# https://toml.io   TOML = Tom's Obvious Minimal Language   (Tom Preston-Werner)
+
+# table = Schluessel/Wert-Paare
+[versions]
+spring-boot = "4.1.0"
+spring-bootPlugin = "4.1.0"
+kotlin = "2.4.0"
+
+cdi = "4.1.0"
+guava = "33.6.0-jre"
+jansi = "2.4.3"
+mapstruct = "1.7.0.Beta1"
+spring-addons-starter-oidc = "9.1.3"
+springdoc-openapi = "TBD"
+
+# -----------------------------------------------------------------------------------------
+# B O M s   u n d   s p e z i f i s c h e   V e r s i o n e n   u e b e r s c h r e i b e n
+# -----------------------------------------------------------------------------------------
+# https://github.com/spring-projects/spring-boot/blob/main/spring-boot-project/spring-boot-dependencies/build.gradle
+angus-mail = "2.1.0-M1"
+assertj = "4.0.0-M1"
+#zipkin-reporter = "3.5.3"
+#commons-lang3 = "3.18.0"
+flyway = "12.8.1"
+graphql-java = "26.0"
+#graphql-java-dataloader = "6.0.0"
+hibernate = "8.0.0.Alpha1"
+#hibernate = "7.3.2.Final"
+#hibernate-validator = "9.1.0.Final"
+hibernate-validator-annotation-processor = "9.1.0.Final"
+#hikaricp = "7.0.2"
+jackson-bom = "3.2.0"
+#jakarta-persistence = "4.0.0-M4"
+jakarta-persistence = "4.0.0-M1"
+#jakarta-persistence = "3.2.0"
+jakarta-validation = "4.0.0-M1"
+#json-smart="2.6.0"
+#jspecify = "1.0.0"
+junit-jupiter = "6.1.0"
+#log4j2 = "2.24.3"
+#logback = "1.5.34"
+#micrometer = "1.17.0"
+#micrometer-tracing = "1.7.0"
+#mockito = "5.23.0"
+mockito-inline = "5.2.0"
+#netty = "4.2.15.Final"
+opentelemetry = "1.63.0"
+#postgresql = "42.7.11"
+prometheus-client = "1.7.0"
+#reactor-bom = "2025.0.6"
+#slf4j = "2.0.16"
+#snakeyaml = "2.6"
+#spring-data = "2026.0.0"
+#spring-framework = "7.0.8"
+#spring-graphql = "2.0.4"
+#spring-security = "7.1.0"
+#tomcat = "11.0.22"
+
+# ----------------------------------------------------------------------------------------
+# T e s t e n
+# ----------------------------------------------------------------------------------------
+junit-platform = "6.1.0"
+
+# ----------------------------------------------------------------------------------------
+# C o d e a n a l y s e ,   R e p o r t s ,   D o k u m e n t a t i o n
+# ----------------------------------------------------------------------------------------
+asciidoctorj = "3.0.1"
+asciidoctorjDiagram = "3.2.1"
+asciidoctorjPdf = "2.3.23"
+checkstyle = "13.5.0"
+errorprone = "2.50.0"
+# org.jruby:jruby
+#jruby = "10.0.2.0"
+jruby = "9.4.14.0"
+#jrubyAsciidoctorpdf = "10.0.2.0"
+jrubyAsciidoctorpdf = "9.4.14.0"
+jacoco = "0.8.15"
+modernizer = "3.4.0"
+nullaway = "0.13.6"
+pmd = "7.25.0"
+spotbugs = "4.10.2"
+
+# ----------------------------------------------------------------------------------------
+# P l u g i n s
+# ----------------------------------------------------------------------------------------
+# TODO Gradle-Plugin 5.0.0-alpha.1: https://docs.asciidoctor.org/gradle-plugin/5.0
+#asciidoctor = "5.0.0-alpha.1"
+#asciidoctor-diagram = "5.0.0-alpha.1"
+#asciidoctor-pdf = "5.0.0-alpha.1"
+asciidoctor = "4.0.5"
+asciidoctorPdf = "4.0.5"
+ben-manes-versions = "0.54.0"
+cyclonedx = "3.2.4"
+errorprone-plugin = "5.1.0"
+license-report = "3.1.4"
+modernizerPlugin = "1.14.0"
+nwillc-vplugin = "3.0.5"
+owasp-dependencycheck = "12.2.2"
+sonarqube = "7.3.1.8318"
+spotbugsPlugin = "6.5.6"
+spotless = "8.6.0"
+sweeney = "7.0.6"
+test-logger = "4.0.0"
+
+# ////////////////////////////////////////////////////////////////////////////////////////
+# L I B R A R I E S
+# ////////////////////////////////////////////////////////////////////////////////////////
+[libraries]
+angus-mail = { module = "org.eclipse.angus:jakarta.mail", version.ref = "angus-mail" }
+assertj-bom = { module = "org.assertj:assertj-bom", version.ref = "assertj" }
+#commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+cdi = { module = "jakarta.enterprise:jakarta.enterprise.cdi-api", version.ref = "cdi" }
+flyway = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
+flyway-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flyway" }
+graphql-java = { module = "com.graphql-java:graphql-java", version.ref = "graphql-java" }
+#graphql-java-dataloader = { module = "com.graphql-java:java-dataloader", version.ref = "graphql-java-dataloader" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+hibernate-platform = { module = "org.hibernate.orm:hibernate-platform", version.ref = "hibernate" }
+#hibernate-validator = { module = "org.hibernate.validator:hibernate-validator", version.ref = "hibernate-validator" }
+hibernate-validator-annotation-processor = { module = "org.hibernate.validator:hibernate-validator-annotation-processor", version.ref = "hibernate-validator-annotation-processor" }
+#hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
+jackson-bom = { module = "tools.jackson:jackson-bom", version.ref = "jackson-bom" }
+jakarta-persistence = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakarta-persistence" }
+jakarta-validation = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakarta-validation" }
+#json-smart = { module = "net.minidev:json-smart", version.ref = "json-smart" }
+#jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit-jupiter" }
+#log4j-bom = { module = "org.apache.logging.log4j:log4j-bom", version.ref = "log4j2" }
+#logback-parent = { module = "ch.qos.logback:logback-parent", version.ref = "logback" }
+#micrometer-tracing-bom = { module = "io.micrometer:micrometer-tracing-bom", version.ref = "micrometer-tracing" }
+#micrometer-bom = { module = "io.micrometer:micrometer-bom", version.ref = "micrometer" }
+#mockito-bom = { module = "org.mockito:mockito-bom", version.ref = "mockito" }
+nullaway-bom = { module = "com.uber.nullaway:nullaway-bom", version.ref = "nullaway" }
+#netty-bom = { module = "io.netty:netty-bom", version.ref = "netty" }
+opentelemetry-bom = { module = "io.opentelemetry:opentelemetry-bom", version.ref = "opentelemetry" }
+#postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+prometheus-metrics-bom = { module = "io.prometheus:prometheus-metrics-bom", version.ref = "prometheus-client" }
+#reactor-bom = { module = "io.projectreactor:reactor-bom", version.ref = "reactor-bom" }
+#slf4j-bom = { module = "org.slf4j:slf4j-bom", version.ref = "slf4j" }
+#snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+spring-boot-parent = { module = "org.springframework.boot:spring-boot-starter-parent", version.ref = "spring-boot" }
+spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "spring-boot" }
+spring-boot-configurationProcessor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
+#spring-data-bom = { module = "org.springframework.data:spring-data-bom", version.ref = "spring-data" }
+#spring-framework-bom = { module = "org.springframework:spring-framework-bom", version.ref = "spring-framework" }
+#spring-graphql = { module = "org.springframework.graphql:spring-graphql", version.ref = "spring-graphql" }
+#spring-security-bom = { module = "org.springframework.security:spring-security-bom", version.ref = "spring-security" }
+#tomcat-embed-core = { module = "org.apache.tomcat.embed:tomcat-embed-core", version.ref = "tomcat" }
+#tomcat-embed-el = { module = "org.apache.tomcat.embed:tomcat-embed-el", version.ref = "tomcat" }
+#tomcat-embed-websocket = { module = "org.apache.tomcat.embed:tomcat-embed-websocket", version.ref = "tomcat" }
+#zipkin-reporter-bom = { module = "io.zipkin.reporter2:zipkin-reporter-bom", version.ref = "zipkin-reporter" }
+
+errorprone = { module = "com.google.errorprone:error_prone_core", version.ref = "errorprone" }
+jansi = { module = "org.fusesource.jansi:jansi", version.ref = "jansi" }
+junit-platform-reporting = { module = "org.junit.platform:junit-platform-reporting", version.ref = "junit-platform" }
+junit-platform-suite-api = { module = "org.junit.platform:junit-platform-suite-api", version.ref = "junit-platform" }
+junit-platform-suite-engine = { module = "org.junit.platform:junit-platform-suite-engine", version.ref = "junit-platform" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
+mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito-inline" }
+modernizer = { module = "org.gaul:modernizer-maven-annotations", version.ref = "modernizer" }
+spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
+spring-addons-starter-oidc = { module = "com.c4-soft.springaddons:spring-addons-starter-oidc", version.ref = "spring-addons-starter-oidc" }
+springdoc-openapi = { module = "org.springdoc:springdoc-openapi", version.ref = "springdoc-openapi" }
+springdoc-openapi-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc-openapi" }
+
+# ////////////////////////////////////////////////////////////////////////////////////////
+# B u n d l e s
+# ////////////////////////////////////////////////////////////////////////////////////////
+#[bundles]
+#tomcat = ["tomcat-embed-core", "tomcat-embed-el", "tomcat-embed-websocket"]
+
+# ////////////////////////////////////////////////////////////////////////////////////////
+# P l u g i n s
+# ////////////////////////////////////////////////////////////////////////////////////////
+[plugins]
+ben-manes-versions = { id = "com.github.ben-manes.versions", version.ref = "ben-manes-versions" }
+#asciidoctorj = { id = "org.asciidoctor.jvm", version.ref = "asciidoctor" }
+#asciidoctorDiagram = { id = "org.asciidoctor.jvm.diagram", version.ref = "asciidoctor-diagram" }
+#asciidoctorPdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor-pdf" }
+asciidoctor-convert = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
+asciidoctor-pdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctorPdf" }
+cyclonedx = { id = "org.cyclonedx.bom", version.ref = "cyclonedx" }
+dependencycheck = { id = "org.owasp.dependencycheck", version.ref = "owasp-dependencycheck" }
+errorprone = { id = "net.ltgt.errorprone", version.ref = "errorprone-plugin" }
+license-report = { id = "com.github.jk1.dependency-license-report", version.ref = "license-report" }
+modernizer = { id = "com.github.andygoossens.modernizer", version.ref = "modernizerPlugin" }
+nwillc-vplugin = { id = "com.github.nwillc.vplugin", version.ref = "nwillc-vplugin" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-bootPlugin" }
+spotbugs = { id = "com.github.spotbugs", version.ref = "spotbugsPlugin" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+sweeney = { id = "com.fizzpod.sweeney", version.ref = "sweeney" }
+test-logger = { id = "com.adarshr.test-logger", version.ref = "test-logger" }

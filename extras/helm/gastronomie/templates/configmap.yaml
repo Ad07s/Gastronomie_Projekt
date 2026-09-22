@@ -1,0 +1,38 @@
+# Copyright (C) 2022 - present Juergen Zimmermann, Hochschule Karlsruhe
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# "." am Anfang bezeichnet den Top-Level Namensraum bei Helm
+
+# https://github.com/kubernetes/enhancements/blob/master/keps/sig-cli/5295-kyaml/README.md
+# https://kubernetes.io/blog/2025/08/27/kubernetes-v1-34-release/#alpha-support-for-kyaml-a-kubernetes-dialect-of-yaml
+
+---
+{
+  apiVersion: "v1",
+  # https://kubernetes.io/docs/concepts/configuration/configmap
+  kind: "ConfigMap",
+  metadata: {
+    name: "{{ include "gastronomie.fullname" . }}",
+    namespace: "{{ .Values.namespace }}",
+  },
+  data: {
+    # Key-Value-Paare (hier: fuer die Umgebungsvariable)
+    TZ: "Europe/Berlin",
+    LANG: "de_DE.utf8",
+    SPRING_PROFILES_DEFAULT: "{{ .Values.profile }}",
+    SPRING_PROFILES_ACTIVE: "{{ .Values.profile }}",
+    SERVER_TOMCAT_BASEDIR: "/tmp",
+  },
+}
