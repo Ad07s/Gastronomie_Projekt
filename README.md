@@ -50,3 +50,18 @@ JDK 21 oder höher
 
 1. Repository klonen
    
+
+2. Datenbank starten
+Der PostgreSQL-Container inklusive Schema und Tablespace wird über Docker Compose hochgefahren:
+docker compose up -d
+
+3. Anwendung starten
+Flyway führt beim Booten automatisch alle Migrationen aus dem Verzeichnis src/main/resources/db/migration/ aus und baut Tabellen sowie Testdaten auf:
+./gradlew bootRun
+
+4. Tests ausführen
+./gradlew test
+
+Lizenz und Danksagung
+Dieses Projekt steht unter der GNU General Public License v3.0.   
+Das grundlegende Repository-Gerüst und die Konfigurationsbasis stammen aus Lehrmaterialien von Prof. Dr. Juergen Zimmermann an der Hochschule Karlsruhe. Die gesamte Domänenlogik (Gastronomie-Kontext mit Restaurants, Speisen und Adressen), die DTO- und Validierungsstrukturen, die Service-Implementierung sowie die REST-Endpunkte und Concurrency-Prüfungen habe ich eigenständig im Rahmen des Semesters umgesetzt.
